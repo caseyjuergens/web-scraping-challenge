@@ -1,13 +1,17 @@
+import re
 from splinter import Browser
 from bs4 import BeautifulSoup as bs
 import requests
 import pandas as pd
 from webdriver_manager.chrome import ChromeDriverManager
 
-def scrape():
+def init_browser():
     executable_path = {'executable_path': ChromeDriverManager().install()}
     browser = Browser('chrome', **executable_path, headless=False)
+    return browser
 
+def scrape():
+    browser=init_browser()
     #url of redscience page to be scraped
     red_url= 'https://redplanetscience.com/'
     browser.visit(red_url)
@@ -49,6 +53,14 @@ def scrape():
 
     facts_table_html= table_df.to_html()
     facts_table_html
+    
+    #url of hemispheres site
+    hemi_url='https://marshemispheres.com/'
+    browser.visit(hemi_url)
+    html= browser.html
+    soup= bs(html, 'html.parser') 
+    hemis= soup.find_all('h3', limit=4)
+    print(hemis)
 
     #find title cerberus, get pic url
     for x in range(1):
@@ -188,3 +200,14 @@ def scrape():
         print(hemi_dict)
 
     browser.quit()
+
+    scrape_dict={
+        "news_title": news_title,
+        "news_p": news_p,
+        "featured_image_url": featured_image_url,
+        "hemi_dict": hemi_dict
+    }
+
+
+
+    return scrape_dict
