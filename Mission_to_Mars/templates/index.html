@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mission to Mars</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <!--jumbotron with scrape button-->
+    <div class="container-fluid">
+        <div class="jumbotron text-center">
+        <h1>Mission to Mars</h1>
+        <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+        </div>
+    </div>
+
+    <!--latest mars news container-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <h3>Latest Mars News</h3>
+                <h5>{{dict.news_title}}</h5>
+                <h6>{{dict.news_p}}</h6>
+    </div>
+
+    
+    <div class="row">
+        <!--featured mars image-->
+        <div class="col-6">
+            <h3>Featured Mars Image</h3>
+            <div class='image'>
+                <img src="{{dict.featured_image_url}}" alt="Featured mars image">
+            </div>
+        </div>
+    
+
+        <!--mars/earth comparison table-->
+        <div class="col-6">
+            <div class="table-light">
+            <h3>Mars-Earth Comparison</h3>
+            <table class="table-light">
+                <table border="1" class="dataframe">
+                    <thead>
+                        <tr style="text-align: right;">
+                        <th></th>
+                        <th>Mars</th>
+                        <th>Earth</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <th>Diameter:</th>
+                        <td>6,779 km</td>
+                        <td>12,742 km</td>
+                        </tr>
+                        <tr>
+                        <th>Mass:</th>
+                        <td>6.39 × 10^23 kg</td>
+                        <td>5.97 × 10^24 kg</td>
+                        </tr>
+                        <tr>
+                        <th>Moons:</th>
+                        <td>2</td>
+                        <td>1</td>
+                        </tr>
+                        <tr>
+                        <th>Distance from Sun:</th>
+                        <td>227,943,824 km</td>
+                        <td>149,598,262 km</td>
+                        </tr>
+                        <tr>
+                        <th>Length of Year:</th>
+                        <td>687 Earth days</td>
+                        <td>365.24 days</td>
+                        </tr>
+                        <tr>
+                        <th>Temperature:</th>
+                        <td>-87 to -5 °C</td>
+                        <td>-88 to 58°C</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class='row'>
+            <div class= "col-md-10">
+                <h3 style="text-align:center;">Mars Hemispheres</h3>
+            </div>
+        </div>
+        <div class="card-deck">
+            <div class='col-12'>
+                <div class="row">
+                    <!--write for loop that lists out data and accesses it using dot notation-->
+                    {% for item in dict.hemispheres_dict%}
+                    <img class="card-img-top" src="{{dict.url}}"/>
+                    <div class="card-body">
+                        <p clas="card-text">{{dict.title}}</p>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap CDN -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
